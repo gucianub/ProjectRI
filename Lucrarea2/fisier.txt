@@ -1,0 +1,184 @@
+Laboratorul B624
+	
+
+    Bun venit
+        Contact
+        Noutăți
+        Obiecte găsite
+    Aplicații cu automate programabile
+        Cursuri
+        Laboratoare
+        Utilitare. Documentație
+    Fundamentele calculatoarelor
+        Cursuri
+        Laboratoare
+        Utilitare. Documentație
+    Modelare software. UML şi XML
+        Cursuri
+        Laboratoare 3 IS
+        Laboratoare 4 IS
+        Utilitare. Documentație
+    Platforme Informatice Pentru Producție și Servicii
+        Curs
+        Proiect
+    Programarea Aplicațiilor Mobile
+        Informații
+    Proiectarea sistemelor software complexe
+        Cursuri
+        Laboratoare
+        Teme
+        Utilitare. Documentație
+    PS1 - Conducerea roboților
+        Cursuri
+        Utilitare. Documentație
+    PS2 - Conducerea și monitorizarea la distanță a unui proces printr-o aplicație web
+        Cursuri
+        Teme
+        Utilitare. Documentație
+    Reţele intranet
+        Cursuri
+        Documentaţie/Unelte
+        Download
+        Laboratoare
+    Sisteme de operare
+        Cursuri
+        Laboratoare
+        Utilitare. Documentaţie
+    Sitemap
+
+	
+Reţele intranet‎ > ‎Laboratoare‎ > ‎
+Lucrarea 2
+Lucrarea 2
+
+Şiruri de caractere
+
+    Şirurile de caractere în limbajul Perl sunt valori scalare care pot avea aproape orice dimensiune. Există două tipuri de şiruri, în funcţie de modul în care se procesează caracterele din şir. Astfel, în şirurile delimitate cu apostroafe, toate caracterele rămân constante, în afară caracterelor / si '. In sirurile delimitate cu ghilimele, caracterele de control ca \n, \t sau numele de variabile sunt inlocuite cu linie noua, caracterul tab sau valorile variabilelor ale caror nume se gasesc in sir. Acest procedeu prin care se proceseaza caracterele dintr-un string se numeste interpolare. Astfel putem spune ca sirurile delimitate cu apostroafe sunt siruri fara interpolare iar sirurile delimitate de ghilimele sunt siruri cu interpolare.
+
+use warnings;                                                                                    
+my $sir = "Paul";
+print "Studentul $sir are acces la C:\\Home\\Students\\";
+print 'Studentul $sir are acces la C:\Home\Students\ ';
+
+
+    Pe langa modul de definire a sirurilor cu apostrof sau ghilimele, limbajul perl mai pune la dispozitia programatorului doi operatori care pot usura scrierea sirurilor. Operatorul q, echivalent cu ' ' si operatorul qq echivalent cu " ". Astfel sirul 'Studentii au acces la sisteme unix' poate fi scris astfel: q/Studentii au acces la sisteme unix/. Pe langa caracterul /, se mai pot folosi caracterele <>, {}, [] sau (). O alta modalitate de definire a sirurilor este metoda documentelor <<AICI. Cu ajutorul acestei metode se pot scrie siruri de dimensiuni mari foarte usor. Un astfel de sir trebuie sa inceapa cu caracterele <<, imediat dupa ele urmand sa se scrie un identificator (de obicei litere mari). Ultima linie a sirului va incepe si va contine doar identificatorul ales.   
+
+use warnings;
+print <<EOT;
+Perl is a general-purpose programming language originally
+developed for text manipulation and now used for a
+wide range of tasks including system administration,
+web development, network programming, GUI development, and more.
+
+The language is intended to be practical (easy to use, efficient, complete)
+
+rather than beautiful (tiny, elegant, minimal).
+
+Its major features are that it's easy to use, supports both procedural and object-oriented (OO) programming,
+
+has powerful built-in support for text processing, and has one of the world's most impressive
+
+collections of third-party modules.
+EOT
+
+Observație:
+        Intre caracterele << si IDENTIFICATOR nu trebuie sa existe niciun fel de spatiu.
+
+    
+Operatori și funcții pentru șiruri
+
+    Operatorul de concatenare in limbajul perl este caracterul . (punct).
+
+    Operatorii de comparare: eq, ne, gt, ge, lt, le.
+
+use warnings;
+my $str1 = 'Acesta este sirul 1';
+my $str2 = 'sirul 2';
+print $str1 . ' concatenat cu ' . $str2 . "\n";
+print "28 * 4= " . 28*4 . "\n";
+
+print "EGALE" if ($str1 eq $str2);
+print "DIFERITE" if ($str1 ne $str2);
+print "STR1 mai mare" if ($str1 gt $str2);
+print "STR2 mai mare" if ($str1 lt $str2);
+
+
+
+    Pe langa operatorul de concatenare si operatorii q si qq exista si operatorul de repetitie. Acest operator, multiplica de un anumit numar de ori secventa pe care o urmeaza.
+ 
+
+use warnings;
+print "ha"x4;
+
+
+    Funcția length returnează lungimea unui scalar (șir).
+
+print length($str1);
+
+
+Funcții uzuale
+
+    Pentru aflarea lungimii unui sir se va utiliza functia length (length SIR). Aceasta functie returneaza lungimea in caractere a sirului transmis ca parametru. Pentru sirurile care contin caractere UTF8, functia va returna numarul de caractere, nu numarul de bytes.
+
+    Observatie: Aceasta functie nu functioneaza pentru liste (@list).
+
+    Functia substr (substr SIR, INCEPUT, LUNGIME) returneaza un subsir din sirul SIR, incepand cu pozitia INCEPUT, alcatuit din LUNGIME caractere.
+    Functia split (split SECV, SIR) desparte sirul SIR dupa secventa SECV returnand o lista de subsiruri. Atentie, secventa SECV nu se va gasi in niciunul dintre sirurile returnate.
+    Functiile lc (lc SIR) si uc (uc SIR) transforma toate literele dintr-un sir in litere mici, respectiv majuscule, returnand sirul modificat.
+
+use warnings;
+$s  = "Universitatea Politehnica Timisoara";
+$s1 = substr $s, 4, 5;    
+$s2 = substr $s, 4, -11;
+@list = split(" ", $s);
+print uc $s;
+print lc $s;
+
+
+Fișiere
+
+    Lucrul cu fisiere in perl este deosebit de simplu. De obicei fisierele se citesc linie cu linie, urmand ca procesarea textului sa se faca ulterior cu functii de siruri de caractere. Pentru deschiderea unui fisier se va utiliza functia open (open IDFISIER, MOD . CALE). Exista trei moduri in care se poate deschide un fisier:
+    mod citire        - se adauga caracterul < in fata numelui fisierului.
+    mod scriere      - se adauga caracterul > in fata numelui fisierului (acest mod va rescrie orice informatie din fisierul deschis).
+    mod adaugare   - se adauga secvebta >> in fata numelui fisierului (adaugarea se va face intotdeauna la sfarsitul fisierului).
+
+    Dupa deschiderea fisierului se va putea utiliza identificatorul de fisier la fel ca in cazul citirii de la tastatura <STDIN>. Astfel, constructia <IDFISIER> va returna cate o linie din fisier de fiecare data cand va fi apelata. La sfarsitul fisierului va returna NULL.
+    Pentru a inchide un identificator de fisier se va utiliza functia close (close IDFISIER).
+
+    Daca se doreste scrierea intr-un fisier deschis pentru scriere sau adaugare se va utiliza functia print, insa primul parametru al functiei va fi identificatorul de fisier.
+
+    Funcția tell (tell IDFISIER) returneaza pozitia in bytes intr-un fisier in timp ce functia seek (seek IDFISIER, POZ, REF) seteaza pozitia intr-un fisier relativă la unul din trei puncte: început, sfârșit sau poziția curentă (REF 0,1 sau 2).
+
+use warnings;
+open (FILE, "studenti.txt") or die $!; #deschidere in mod citire.
+
+open (RAP, ">raport.txt") or die $!; #descidere in mod scriere.
+
+open (STAT,">>statistica.txt") or die $!; #deschidere in mod adaugare.
+
+open (my $fh, "<:encoding(UTF-8)", "gpon.txt")
+    || die "can't open UTF-8 encoded filename: $!";
+
+while ($linie = <FILE>) {
+  $c++;
+  print RAP $c, " $linie";
+}
+
+print STAT "Astazi s-au citit: $c linii.\n";
+close(FILE);
+close(RAP);
+close(STAT);
+
+
+Exercitiu:
+    Copiati aceasta lucrare intr-un fisier text, deschideti fisierul si numarati cate cuvinte contine acest fisier. (Se va utiliza functia split).
+
+
+ 
+Ataşamente (1)
+
+    ZteAutofindTelnet.log - la 18.10.2011, 00:09 de Andrei GUDIU (versiunea 1)
+    1 k Descărcaţi
+
+Sign in  |  Terms  |  Report Abuse  |  Print page  |  Powered by Google Sites
+
